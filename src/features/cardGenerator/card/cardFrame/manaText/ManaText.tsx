@@ -10,6 +10,7 @@ const ManaText = ({ text, isCost }: Props) => {
 
   const renderManaSymbols = (text: string, isCost: boolean) => {
     const replacedText = text
+      .replace(/\{0\}/g, getManaCost("0", isCost))
       .replace(/\{1\}/g, getManaCost("1", isCost))
       .replace(/\{2\}/g, getManaCost("2", isCost))
       .replace(/\{3\}/g, getManaCost("3", isCost))
@@ -28,6 +29,8 @@ const ManaText = ({ text, isCost }: Props) => {
       .replace(/\{B\}/g, getManaCost("b", isCost))
       .replace(/\{R\}/g, getManaCost("r", isCost))
       .replace(/\{G\}/g, getManaCost("g", isCost))
+      .replace(/\{E\}/g, getManaCost("e", isCost))
+      .replace(/\{C\}/g, getManaCost("c", isCost))
       .replace(/\n/g, "<br/>");
 
     return { __html: replacedText };
