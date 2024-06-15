@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "downloadjs": "^1.4.7",
+    "html-to-image": "^1.11.11",
     "mana-font": "^1.15.9",
     "next": "14.2.4",
     "react": "^18",
