@@ -3,7 +3,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: "static.wikia.nocookie.net",
+        hostname: "dalleprodsec.blob.core.windows.net",
       },
     ],
   },

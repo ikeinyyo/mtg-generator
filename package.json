@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.45.0",
     "downloadjs": "^1.4.7",
     "html-to-image": "^1.11.11",
     "mana-font": "^1.15.9",

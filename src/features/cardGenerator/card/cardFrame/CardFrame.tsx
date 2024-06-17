@@ -30,8 +30,8 @@ const CardFrame = ({
         className="rounded-2xl"
       />
       <div
-        className="absolute text-black text-xs font-semibold"
-        style={{ top: "21px", left: "22px" }}
+        className="absolute text-black font-semibold"
+        style={{ top: "21px", left: "22px", fontSize: "10px" }}
       >
         {name}
       </div>
@@ -42,8 +42,8 @@ const CardFrame = ({
         <ManaText text={manaCost} isCost={true} />
       </div>
       <div
-        className="absolute text-black text-xs font-semibold"
-        style={{ bottom: "136px", left: "22px" }}
+        className="absolute text-black"
+        style={{ bottom: "137px", left: "22px", fontSize: "9px" }}
       >
         {type}
       </div>
@@ -54,7 +54,9 @@ const CardFrame = ({
         <ManaText text={text} isCost={true} />
       </div>
       <div
-        className="absolute text-black text-sm font-semibold"
+        className={`absolute ${
+          color == "black" ? "text-white" : "text-black"
+        } text-sm font-semibold`}
         style={{ bottom: "12px", right: "22px" }}
       >
         {attackDefense}
