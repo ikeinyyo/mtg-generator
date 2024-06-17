@@ -14,6 +14,8 @@ const Card = ({ isLoading, cardData }: Props) => {
       alt="Back MTG card"
       width={252}
       height={360}
+      className={isLoading ? "animate-pulse" : ""}
+      style={{ marginBottom: "10px" }}
     />
   ) : (
     <CardFrame
