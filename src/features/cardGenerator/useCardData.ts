@@ -64,6 +64,9 @@ const dalle = async (prompt: string) => {
   return (await response.json()).data[0].url;
 };
 
+const clearCardData = (cardData: string) =>
+  cardData.replace("```json", "").replace("```", "");
+
 const generateCardSystem = () =>
   "Eres una IA que genera los datos de Magic: The Gatheric ficticias o modificadas según la descipción del usuario en formato JSON";
 
@@ -106,7 +109,9 @@ Dalle Prompt:`;
 
 const generateCard = async (cardRequest: CardRequest) => {
   const cardData = JSON.parse(
-    await gpt(generateCardSystem(), generateCardPrompt(cardRequest.prompt))
+    clearCardData(
+      await gpt(generateCardSystem(), generateCardPrompt(cardRequest.prompt))
+    )
   );
   const dallePrompt = await gpt(
     generateRefinePromptSystem(),

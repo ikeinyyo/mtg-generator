@@ -28,3 +28,16 @@ body {
     text-wrap: balance;
   }
 }
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse {
+  animation: pulse 1.5s infinite;
+}
