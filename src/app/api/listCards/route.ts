@@ -1,10 +1,10 @@
 import { BlobServiceClient } from "@azure/storage-blob";
 
 const AZURE_STORAGE_CONNECTION_STRING =
-  process.env.AZURE_STORAGE_CONNECTION_STRING;
-const CONTAINER_NAME = process.env.AZURE_STORAGE_CARDS_CONTAINER_NAME;
+  process.env.AZURE_STORAGE_CONNECTION_STRING || "";
+const CONTAINER_NAME = process.env.AZURE_STORAGE_CARDS_CONTAINER_NAME || "";
 
-export async function GET(request) {
+export async function GET() {
   try {
     const blobServiceClient = BlobServiceClient.fromConnectionString(
       AZURE_STORAGE_CONNECTION_STRING
@@ -22,7 +22,10 @@ export async function GET(request) {
       });
     }
 
-    blobs.sort((a, b) => b.lastModified.getTime() - a.lastModified.getTime());
+    blobs.sort(
+      (a, b) =>
+        (b.lastModified?.getTime() || 0) - (a.lastModified?.getTime() || 0)
+    );
 
     const blobUrls = blobs.map((blob) => blob.url);
 
