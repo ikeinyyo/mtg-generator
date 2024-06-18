@@ -5,6 +5,9 @@ const nextConfig = {
       {
         hostname: "dalleprodsec.blob.core.windows.net",
       },
+      {
+        hostname: "*.blob.core.windows.net",
+      },
     ],
   },
 };
