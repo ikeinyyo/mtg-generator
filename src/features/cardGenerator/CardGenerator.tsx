@@ -19,9 +19,12 @@ const CardGenerator = () => {
     }
 
     setDownloadingImage(true);
-    toPng(cardRef.current, { backgroundColor: "transparent" })
+    toPng(cardRef.current, {
+      backgroundColor: "transparent",
+      includeQueryParams: true,
+    })
       .then((dataUrl) => {
-        download(dataUrl, "card.png");
+        download(dataUrl, cardData ? `${cardData.name}.png` : "card.png");
       })
       .catch((err) => {
         console.error("Oops, something went wrong!", err);
