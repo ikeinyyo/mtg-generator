@@ -18,15 +18,17 @@ const Card = ({ isLoading, cardData }: Props) => {
       style={{ marginBottom: "10px" }}
     />
   ) : (
-    <CardFrame
-      color={cardData.color}
-      name={cardData.name}
-      type={cardData.type}
-      text={cardData.text}
-      manaCost={cardData.manaCost}
-      attackDefense={cardData.attackDefense}
-      cardImage={cardData.cardImage}
-    />
+    <div className="mb-2.5 transform transition-transform hover:scale-150 hover:z-10">
+      <CardFrame
+        color={cardData.color}
+        name={cardData.name}
+        type={cardData.type}
+        text={cardData.text}
+        manaCost={cardData.manaCost}
+        attackDefense={cardData.attackDefense}
+        cardImage={cardData.cardImage}
+      />
+    </div>
   );
 };
 export { Card };
