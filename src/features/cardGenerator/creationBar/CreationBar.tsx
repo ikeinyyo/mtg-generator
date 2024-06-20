@@ -32,9 +32,10 @@ const CreationBar = ({ onCreate, isLoading }: Props) => {
           onKeyDown={handleKeyPress}
           className="flex-grow px-4 py-2 focus:outline-none text-black"
           placeholder="Create a MTG Card..."
+          disabled={isLoading}
         />
         <button
-          className="bg-orange-600 hover:bg-orange-500 text-white px-4 py-2 focus:outline-none"
+          className="bg-orange-600 hover:bg-orange-500 text-white px-4 py-2 focus:outline-none disabled:bg-orange-900 disabled:cursor-not-allowed"
           disabled={isLoading}
           onClick={sendMessage}
         >
