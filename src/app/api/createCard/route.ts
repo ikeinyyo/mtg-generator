@@ -74,6 +74,7 @@ const generateCardPrompt = (
   }
   
   Los colores posibles son "artifact" | "black" | "blue" | "multi" | "red" | "white"
+  Si una carta tiene más de un color de maná en cualquier parte de la carta, debe ser "multi"
   General todo en español, includo el name, type and text (a menos que se indique lo contrario)
   
   Si la carta no es una criatura deja attackDefense en blanco
@@ -95,11 +96,15 @@ const generateRefinePromptPrompt = (
   Dalle Prompt:`;
 
 export async function POST(request: Request) {
-  const { prompt } = await request.json();
+  const { prompt, previousCardData } = await request.json();
   try {
-    const cardData = JSON.parse(
-      clearCardData(await gpt(generateCardSystem(), generateCardPrompt(prompt)))
-    );
+    const cardData = previousCardData
+      ? previousCardData
+      : JSON.parse(
+          clearCardData(
+            await gpt(generateCardSystem(), generateCardPrompt(prompt))
+          )
+        );
     const dallePrompt = await gpt(
       generateRefinePromptSystem(),
       generateRefinePromptPrompt(prompt, cardData)

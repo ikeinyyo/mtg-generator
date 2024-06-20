@@ -4,7 +4,7 @@ import { toPng } from "html-to-image";
 import download from "downloadjs";
 import { Card } from "./card/Card";
 import CreationBar from "./creationBar/CreationBar";
-import { FaDownload, FaSave } from "react-icons/fa";
+import { FaDownload, FaSave, FaPaintBrush, FaRedo } from "react-icons/fa";
 import useCardData, { CardData } from "./useCardData";
 import useSaveCard from "../cardList/useSaveCard";
 
@@ -17,6 +17,7 @@ const CardGenerator = ({ onCardSaved }: Props) => {
   const [isLoading, setLoading] = useState<boolean>(false);
   const [isDoActions, setDoActions] = useState<boolean>(false);
   const [isSavedCard, setSavedCard] = useState<boolean>(false);
+  const [previousPrompt, setPreviousPrompt] = useState<string>("");
   const cardRef = useRef<HTMLDivElement>(null);
 
   const handleCreateImage = () => {
@@ -59,6 +60,23 @@ const CardGenerator = ({ onCardSaved }: Props) => {
     });
   };
 
+  const regenerateAll = () => {
+    setLoading(true);
+    setSavedCard(false);
+    createImage({
+      prompt: previousPrompt,
+    });
+  };
+
+  const regenerateImage = () => {
+    setLoading(true);
+    setSavedCard(false);
+    createImage({
+      prompt: previousPrompt,
+      previousCardData: cardData || undefined,
+    });
+  };
+
   const saveCard = () => {
     if (cardRef.current === null) {
       return;
@@ -81,30 +99,48 @@ const CardGenerator = ({ onCardSaved }: Props) => {
 
   return (
     <>
-      <CreationBar
-        onCreate={onCreateImageAction}
-        isLoading={isLoading || isDoActions}
-      />
       <div ref={cardRef}>
         <Card isLoading={isLoading} cardData={cardData} />
       </div>
       <div className="flex justify-center mt-4 space-x-4">
         <button
-          className="flex items-center justify-center bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg focus:outline-none w-40 disabled:bg-orange-900 disabled:cursor-not-allowed"
+          title="Download Card"
+          className="flex items-center justify-center bg-orange-600 hover:bg-orange-700 text-white w-12 h-12 rounded-lg focus:outline-none disabled:bg-orange-900 disabled:cursor-not-allowed"
           onClick={handleCreateImage}
           disabled={isDoActions || isLoading || !cardData}
         >
-          <FaDownload className="mr-2" />
-          Descargar
+          <FaDownload />
         </button>
         <button
-          className="flex items-center justify-center bg-white hover:bg-gray-300 text-black px-4 py-2 rounded-lg focus:outline-none w-40 disabled:bg-gray-400 disabled:cursor-not-allowed"
+          title="Save Card"
+          className="flex items-center justify-center bg-white hover:bg-gray-300 text-black w-12 h-12 rounded-lg focus:outline-none disabled:bg-gray-400 disabled:cursor-not-allowed"
           onClick={saveCard}
           disabled={isDoActions || isLoading || !cardData || isSavedCard}
         >
-          <FaSave className="mr-2" /> Guardar
+          <FaSave />
+        </button>
+        <button
+          title="Regenerate Illustration"
+          className="flex items-center justify-center bg-white hover:bg-gray-300 text-black w-12 h-12 rounded-lg focus:outline-none disabled:bg-gray-400 disabled:cursor-not-allowed"
+          onClick={regenerateImage}
+          disabled={isDoActions || isLoading || !cardData}
+        >
+          <FaPaintBrush />
+        </button>
+        <button
+          title="Regenerate Card"
+          className="flex items-center justify-center bg-white hover:bg-gray-300 text-black w-12 h-12 rounded-lg focus:outline-none disabled:bg-gray-400 disabled:cursor-not-allowed"
+          onClick={regenerateAll}
+          disabled={isDoActions || isLoading || !cardData}
+        >
+          <FaRedo />
         </button>
       </div>
+      <CreationBar
+        onCreate={onCreateImageAction}
+        isLoading={isLoading || isDoActions}
+        setPreviousPrompt={setPreviousPrompt}
+      />
     </>
   );
 };
