@@ -37,7 +37,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## TODO
 
-- [ ] Save Card to Storage
-- [ ] Show all cards in the Storage
-- [ ] Regenerate image
+- [x] Save Card to Storage
+- [x] Show all cards in the Storage
+- [x] Regenerate image
 - [ ] Edit data
