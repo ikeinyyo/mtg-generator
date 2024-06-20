@@ -1,27 +1,11 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import useCardList from "./useCardList";
 import Image from "next/image";
 import CardLoading from "./cardLoading/CardLoading";
 
-const CardList = () => {
-  const [cardList, setCardList] = useState<string[]>([]);
-  const [isLoading, setLoading] = useState<boolean>(true);
-
-  const onCardListLoaded = (cardList: string[]) => {
-    setCardList(cardList);
-    setLoading(false);
-  };
-
-  const { mutate: loadCardList } = useCardList(onCardListLoaded, () =>
-    setLoading(false)
-  );
-
-  useEffect(() => {
-    loadCardList();
-  }, []);
-
+type Props = {
+  isLoading: boolean;
+  cardList: string[];
+};
+const CardList = ({ isLoading, cardList }: Props) => {
   return (
     <>
       <h2 className="text-2xl p-4">Card Library</h2>

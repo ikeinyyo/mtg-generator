@@ -94,8 +94,8 @@ const generateRefinePromptPrompt = (
   Asegúrate que el prompt no incumple las reglas de contenido de Dalle y que el Dalle solo crea la ilustración pero no la carta ni los bordes ni nada. Tiene que generar una ilustración de la criatura, objeto o paisaje que se descirba.
   Dalle Prompt:`;
 
-export async function POST(req: Request) {
-  const { prompt } = await req.json();
+export async function POST(request: Request) {
+  const { prompt } = await request.json();
   try {
     const cardData = JSON.parse(
       clearCardData(await gpt(generateCardSystem(), generateCardPrompt(prompt)))

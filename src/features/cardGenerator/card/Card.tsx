@@ -15,7 +15,7 @@ const Card = ({ isLoading, cardData }: Props) => {
       width={252}
       height={360}
       className={isLoading ? "animate-pulse" : ""}
-      style={{ marginBottom: "10px" }}
+      style={{ marginBottom: "19px" }}
     />
   ) : (
     <div className="mb-2.5 transform transition-transform hover:scale-150 hover:z-10">
