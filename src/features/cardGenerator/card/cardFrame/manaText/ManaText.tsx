@@ -6,7 +6,9 @@ type Props = {
 
 const ManaText = ({ text, isCost }: Props) => {
   const getManaCost = (icon: string, isCost: boolean) =>
-    `<li class="ms ${isCost ? "ms-cost" : ""} ms-${icon}"></li>`;
+    `<li ${
+      isCost === false ? 'style="font-size: 0.8em"' : ""
+    } class="ms ms-cost ms-${icon}"></li>`;
 
   const renderManaSymbols = (text: string, isCost: boolean) => {
     const replacedText = text

@@ -40,14 +40,20 @@ const CardFrame = ({
       />
       <div
         className="absolute text-black font-semibold flex items-center"
-        style={{ top: "18px", left: "22px", width: "150px", height: "22px" }}
+        style={{
+          top: "18px",
+          left: "22px",
+          width: "150px",
+          height: "22px",
+          fontFamily: "Beleren",
+        }}
       >
         <Textfit mode="single" max={12} style={{ width: "100%" }}>
           {name}
         </Textfit>
       </div>
       <div
-        className="absolute text-black text-xs"
+        className="absolute text-black"
         style={{ top: "20px", right: "22px", fontSize: "10px" }}
       >
         <ManaText text={manaCost} isCost={true} />
@@ -59,6 +65,7 @@ const CardFrame = ({
           left: "22px",
           width: "200px",
           height: "22px",
+          fontFamily: "Beleren",
         }}
       >
         <Textfit mode="single" max={11} style={{ width: "100%" }}>
@@ -71,21 +78,35 @@ const CardFrame = ({
           top: "222px",
           left: "24px",
           right: "24px",
-          width: "200px",
-          height: "86px",
+          fontFamily: "Mplantin",
         }}
       >
-        <Textfit mode="multi" max={10}>
-          <ManaText text={text} isCost={true} />
+        <Textfit
+          style={{ width: "200px", height: "86px" }}
+          mode="multi"
+          max={12}
+          forceSingleModeWidth={false}
+          min={8}
+        >
+          <ManaText text={text} isCost={false} />
         </Textfit>
       </div>
       <div
         className={`absolute ${
           color == "black" ? "text-white" : "text-black"
-        } text-sm font-semibold`}
-        style={{ bottom: "19px", right: "29px" }}
+        } font-semibold`}
+        style={{
+          bottom: "24px",
+          right: "22px",
+          fontFamily: "Beleren",
+          width: "38px",
+          height: "14px",
+          textAlign: "center",
+        }}
       >
-        {attackDefense}
+        <Textfit mode="single" max={14}>
+          {attackDefense}
+        </Textfit>
       </div>
       <div className="absolute top-[11.8%] left-[8%] w-[84%] h-[44%]">
         <Image
