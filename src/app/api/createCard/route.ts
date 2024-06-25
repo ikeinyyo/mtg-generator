@@ -73,7 +73,7 @@ const generateCardPrompt = (
       "attackDefense": "4/4",
   }
   
-  Los colores posibles son "artifact" | "black" | "blue" | "multi" | "red" | "white"
+  Los colores posibles son "artifact" | "black" | "blue" | "multi" | "red" | "white" | "land"
   Si una carta tiene más de un color de maná en cualquier parte de la carta, debe ser "multi"
   General todo en español, includo el name, type and text (a menos que se indique lo contrario)
   
@@ -93,6 +93,7 @@ const generateRefinePromptPrompt = (
 ) => `Las idicaciones del usuario son: '${prompt}'.
   Y estos son los datos de la carta  ${cardData}.
   Asegúrate que el prompt no incumple las reglas de contenido de Dalle y que el Dalle solo crea la ilustración pero no la carta ni los bordes ni nada. Tiene que generar una ilustración de la criatura, objeto o paisaje que se descirba.
+  Es importante que la parte importante de la ilustración esté centrada.
   Dalle Prompt:`;
 
 export async function POST(request: Request) {

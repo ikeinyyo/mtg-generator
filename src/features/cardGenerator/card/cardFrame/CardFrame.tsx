@@ -1,8 +1,17 @@
 import Image from "next/image";
 import { ManaText } from "./manaText/ManaText";
+import { Textfit } from "react-textfit";
 
 type Props = {
-  color: "artifact" | "black" | "blue" | "multi" | "red" | "white" | string;
+  color:
+    | "artifact"
+    | "black"
+    | "blue"
+    | "multi"
+    | "red"
+    | "white"
+    | "land"
+    | string;
   name: string;
   type: string;
   text: string;
@@ -23,17 +32,19 @@ const CardFrame = ({
   return (
     <div className="relative w-[252px] h-[352px]">
       <Image
-        src={`/images/mtg_card_${color}.jpg`}
+        src={`/images/mtg_card_${attackDefense ? "creature_" : ""}${color}.jpg`}
         alt="MTG card frame"
         layout="fill"
         objectFit="cover"
         className="rounded-2xl"
       />
       <div
-        className="absolute text-black font-semibold"
-        style={{ top: "21px", left: "22px", fontSize: "10px" }}
+        className="absolute text-black font-semibold flex items-center"
+        style={{ top: "18px", left: "22px", width: "150px", height: "22px" }}
       >
-        {name}
+        <Textfit mode="single" max={12} style={{ width: "100%" }}>
+          {name}
+        </Textfit>
       </div>
       <div
         className="absolute text-black text-xs"
@@ -42,22 +53,37 @@ const CardFrame = ({
         <ManaText text={manaCost} isCost={true} />
       </div>
       <div
-        className="absolute text-black"
-        style={{ bottom: "137px", left: "22px", fontSize: "9px" }}
+        className="absolute text-black flex items-center"
+        style={{
+          bottom: "133px",
+          left: "22px",
+          width: "200px",
+          height: "22px",
+        }}
       >
-        {type}
+        <Textfit mode="single" max={11} style={{ width: "100%" }}>
+          {type}
+        </Textfit>
       </div>
       <div
         className="absolute text-black"
-        style={{ top: "221px", left: "24px", right: "24px", fontSize: "8px" }}
+        style={{
+          top: "222px",
+          left: "24px",
+          right: "24px",
+          width: "200px",
+          height: "86px",
+        }}
       >
-        <ManaText text={text} isCost={true} />
+        <Textfit mode="multi" max={10}>
+          <ManaText text={text} isCost={true} />
+        </Textfit>
       </div>
       <div
         className={`absolute ${
           color == "black" ? "text-white" : "text-black"
         } text-sm font-semibold`}
-        style={{ bottom: "12px", right: "22px" }}
+        style={{ bottom: "19px", right: "29px" }}
       >
         {attackDefense}
       </div>
