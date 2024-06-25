@@ -10,7 +10,10 @@ type Props = {
 const CardList = ({ isLoading, cardList }: Props) => {
   return (
     <>
-      <h2 className="text-2xl flex items-center pb-4">
+      <h2
+        className="text-2xl flex items-center pb-4"
+        style={{ fontFamily: "Beleren" }}
+      >
         <FaImages className="mr-2" />
         Card Library
       </h2>

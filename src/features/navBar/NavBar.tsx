@@ -16,7 +16,10 @@ const NavBar = ({ children }: Props) => (
           priority
         />
       </header>
-      <div className="absolute left-1/2 transform -translate-x-1/2 text-white text-2xl">
+      <div
+        className="absolute left-1/2 transform -translate-x-1/2 text-white text-2xl"
+        style={{ fontFamily: "Beleren" }}
+      >
         MTGenerator
       </div>
     </article>

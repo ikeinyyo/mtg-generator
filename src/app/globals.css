@@ -41,3 +41,19 @@ body {
 .animate-pulse {
   animation: pulse 1.5s infinite;
 }
+
+@font-face {
+  font-family: 'Beleren';
+  src: url('/fonts/Beleren2016-Bold.woff') format('woff'),
+       url('/fonts/Beleren2016-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mplantin';
+  src: url('/fonts/Mplantin.woff') format('woff'),
+       url('/fonts/Mplantin.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
