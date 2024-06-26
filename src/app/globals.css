@@ -42,6 +42,10 @@ body {
   animation: pulse 1.5s infinite;
 }
 
+.ms-space {
+  margin-left: 1px; 
+}
+
 @font-face {
   font-family: 'Beleren';
   src: url('/fonts/Beleren2016-Bold.woff') format('woff'),

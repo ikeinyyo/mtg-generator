@@ -93,7 +93,7 @@ const generateRefinePromptPrompt = (
 ) => `Las idicaciones del usuario son: '${prompt}'.
   Y estos son los datos de la carta  ${cardData}.
   Asegúrate que el prompt no incumple las reglas de contenido de Dalle y que el Dalle solo crea la ilustración pero no la carta ni los bordes ni nada. Tiene que generar una ilustración de la criatura, objeto o paisaje que se descirba.
-  Es importante que la parte importante de la ilustración esté centrada.
+  Es importante que la parte importante de la ilustración esté centrada. Y que solo incluya la ilustración.
   Dalle Prompt:`;
 
 export async function POST(request: Request) {
