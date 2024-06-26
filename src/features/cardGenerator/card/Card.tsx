@@ -15,10 +15,10 @@ const Card = ({ isLoading, cardData }: Props) => {
       width={252}
       height={360}
       className={isLoading ? "animate-pulse" : ""}
-      style={{ paddingBottom: "19px" }}
+      style={{ paddingBottom: "9px" }}
     />
   ) : (
-    <div className="mb-2.5 transform transition-transform hover:scale-150 hover:z-10">
+    <div className="transform transition-transform hover:scale-150 hover:z-10">
       <CardFrame
         color={cardData.color}
         name={cardData.name}
