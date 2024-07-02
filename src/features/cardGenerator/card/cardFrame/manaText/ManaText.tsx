@@ -35,6 +35,16 @@ const ManaText = ({ text, isCost }: Props) => {
       .replace(/\{G\}/g, getManaCost("g", isCost))
       .replace(/\{E\}/g, getManaCost("e", isCost))
       .replace(/\{C\}/g, getManaCost("c", isCost))
+      .replace(/\{WU\}/g, getManaCost("wu", isCost))
+      .replace(/\{WB\}/g, getManaCost("wb", isCost))
+      .replace(/\{UB\}/g, getManaCost("ub", isCost))
+      .replace(/\{UR\}/g, getManaCost("ur", isCost))
+      .replace(/\{BR\}/g, getManaCost("br", isCost))
+      .replace(/\{BG\}/g, getManaCost("bg", isCost))
+      .replace(/\{RG\}/g, getManaCost("rg", isCost))
+      .replace(/\{RW\}/g, getManaCost("rw", isCost))
+      .replace(/\{GW\}/g, getManaCost("gw", isCost))
+      .replace(/\{GU\}/g, getManaCost("gu", isCost))
       .replace(/\n/g, "<br/>");
 
     return { __html: replacedText };
