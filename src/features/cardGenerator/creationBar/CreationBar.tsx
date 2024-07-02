@@ -8,7 +8,7 @@ type Props = {
 
 const CreationBar = ({ onCreate, isLoading, setPreviousPrompt }: Props) => {
   const [prompt, setPrompt] = useState("");
-  const maxChars = 400;
+  const maxChars = 500;
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (!isLoading && e.key === "Enter" && !e.shiftKey) {
@@ -39,7 +39,7 @@ const CreationBar = ({ onCreate, isLoading, setPreviousPrompt }: Props) => {
           className="flex-grow px-4 py-2 focus:outline-none text-black resize-none disabled:text-white"
           placeholder="Create a MTG Card..."
           disabled={isLoading}
-          style={{ minHeight: "84px" }}
+          style={{ minHeight: "120px" }}
         />
       </div>
       <div className="flex justify-end w-full max-w-screen-xl sm:w-3/5 items-center">
