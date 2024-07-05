@@ -27,10 +27,11 @@ const gpt = async (system: string, prompt: string) => {
       }),
     }
   );
+  if (!response.ok) throw await response.json();
   return (await response.json()).choices[0].message.content;
 };
 
-const dalle = async (prompt: string) => {
+const dalle = async (prompt: string, retry: boolean = true) => {
   const response = await fetch(
     `${process.env.AZURE_OPENAPI_ENDPOINT}/openai/deployments/${process.env.AZURE_OPENAPI_DALLE_DEPLOYMENT}/images/generations?api-version=2024-02-01`,
     {
@@ -48,7 +49,12 @@ const dalle = async (prompt: string) => {
       }),
     }
   );
-  return (await response.json()).data[0].url;
+  const body = await response.json();
+  if (retry && body?.error?.inner_error?.revised_prompt) {
+    return await dalle(body.error.inner_error.revised_prompt, false);
+  }
+  if (!response.ok) throw body;
+  return body.data[0].url;
 };
 
 const clearCardData = (cardData: string) =>
@@ -122,13 +128,9 @@ export async function POST(request: Request) {
       }
     );
   } catch (error) {
-    console.error(error);
-    return new Response(
-      JSON.stringify({ message: "Error creating card", error }),
-      {
-        status: 500,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    return new Response(JSON.stringify(error), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 }

@@ -35,9 +35,23 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-## TODO
+## Roadmap
+
+Epic: MVP
 
 - [x] Save Card to Storage
 - [x] Show all cards in the Storage
 - [x] Regenerate image
-- [ ] Edit data
+- [ ] Show error toast
+- [ ] Image options: download, delete
+- [ ] Virtualize list
+- [ ] Users by Google (NextAuth)
+- [ ] IaC
+- [ ] CI/CD
+- [ ] Backup images: upload images to blob after generation
+- [ ] Add expansion icon
+
+Epic: Edit cards
+
+- [ ] Edit data form
+- [ ] Store metadata instead of the rendered image
