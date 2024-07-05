@@ -92,9 +92,7 @@ const CardFrame = ({
         </Textfit>
       </div>
       <div
-        className={`absolute ${
-          color == "black" ? "text-white" : "text-black"
-        } font-semibold`}
+        className={`absolute text-black font-semibold`}
         style={{
           bottom: "24px",
           right: "22px",
