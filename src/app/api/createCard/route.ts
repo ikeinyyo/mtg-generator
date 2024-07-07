@@ -42,7 +42,7 @@ const dalle = async (prompt: string, retry: boolean = true) => {
       },
       body: JSON.stringify({
         prompt: prompt,
-        size: "1024x1024",
+        size: "1792x1024",
         n: 1,
         quality: "standard",
         style: "vivid",
@@ -91,7 +91,7 @@ const generateCardPrompt = (
   `;
 
 const generateRefinePromptSystem = () =>
-  "Eres una IA que genera un prompt para que Dalle genere ilustraciones de criaturas, objeto o paisaje de fantasía al estilo Magic: The Gathering. Asegúrate que el prompt no incumple las reglas de contenido de Dalle.";
+  "Eres una IA que genera un prompt para que Dalle genere ilustraciones de criaturas, objeto o paisaje de fantasía al estilo Magic: The Gathering. Asegúrate que el prompt no incumple las reglas de contenido de Dalle y que la ilustración no contenga ningún elemento de la carta";
 
 const generateRefinePromptPrompt = (
   prompt: string,
@@ -99,7 +99,8 @@ const generateRefinePromptPrompt = (
 ) => `Las idicaciones del usuario son: '${prompt}'.
   Y estos son los datos de la carta  ${cardData}.
   Asegúrate que el prompt no incumple las reglas de contenido de Dalle y que el Dalle solo crea la ilustración pero no la carta ni los bordes ni nada. Tiene que generar una ilustración de la criatura, objeto o paisaje que se descirba.
-  Es importante que la parte importante de la ilustración esté centrada. Y que solo incluya la ilustración.
+  Es importante que la parte importante de la ilustración esté centrada. 
+  Obligatorio: No hagas referencia a que ilustre una carta, solo una ilustración.
   Dalle Prompt:`;
 
 export async function POST(request: Request) {
@@ -119,6 +120,7 @@ export async function POST(request: Request) {
     const imageUrl = await dalle(dallePrompt);
     return new Response(
       JSON.stringify({
+        dallePrompt,
         ...cardData,
         cardImage: imageUrl,
       }),
