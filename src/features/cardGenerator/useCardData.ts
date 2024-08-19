@@ -11,6 +11,16 @@ export type CardData = {
   color: string;
 };
 
+export const defaultCardData: CardData = {
+  name: "Gallardo, creador de cartas",
+  type: "Criatura legendaria — Desarrollador humano",
+  text: "Cuando Gallardo, creador de cartas entre al campo de batalla, busca en tu biblioteca una carta, pon esa carta en tu mano y luego baraja.<hr><i>Cuando dominó el poder de la Inteligencia Artificial, se convirtió en el creador de cartas más grande del multiverso.</i>",
+  manaCost: "{1}{U}{B}",
+  attackDefense: "1/4",
+  color: "multi",
+  cardImage: "/images/default.jpg",
+};
+
 const useCardData = (
   onSuccess: (cardData: CardData) => void,
   onError: () => void

@@ -84,7 +84,7 @@ const generateCardPrompt = (
   General todo en español, includo el name, type and text (a menos que se indique lo contrario)
   
   Si la carta no es una criatura deja attackDefense en blanco
-  Si generas texto de ambientación (no es obligatorio) ponlo entre etiquetas <i> de HTML y añade un salto de línea antes del texto de ambientación.
+  Si hay texto de ambientación (no es obligatorio) sepáralo del texto de la carta con <hr> y ponlo entre etiquetas <i> de HTML.
   
   Instrucciones del usuario ${prompt}
   Genera solo el JSON, nada más. JSON:
