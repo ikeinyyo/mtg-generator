@@ -1,6 +1,57 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# MTGenerator
+
+## Features
+
+### Generate MTG card using AI
+
+You can generate MTG cards using AI writing a prompt and clicking on Create button. It will use Azure OpenAI to generate the card text and the card image.
+
+![Feature AI](/docs/images/feature_ai.jpg)
+
+### Generate or edit MTG Card using the form
+
+Also, you can create or edit your cards using the form.
+
+![Feature Form](/docs/images/feature_form.jpg)
+
+### Action buttons
+
+You have 4 buttons to do different actions.
+
+- Download: download the card to your device.
+- Save: store the image in the gallery.
+- Paint again: re-generate the MTG illustration.
+- Re-generate: generate the entire MTG card again.
+
+![Feature Buttons](/docs/images/feature_buttons.jpg)
+
+### Gallery with the stored cards
+
+Show the stored cards in the gallery.
+
+![Feature Gallery](/docs/images/feature_gallery.jpg)
 
 ## Getting Started
+
+### Environment variables
+
+To use MTGenerator, first you must create a `.env` file copying `.env.template`.
+
+```
+// Azure OpenAI
+AZURE_OPENAPI_ENDPOINT=
+AZURE_OPENAPI_KEY=
+AZURE_OPENAPI_GPT_DEPLOYMENT=
+AZURE_OPENAPI_DALLE_DEPLOYMENT=
+
+// Storage Account (to store the cards)
+STORAGE_ACCOUNT_CONNECTION_STRING=
+STORAGE_ACCOUNT_CONTAINER_NAME=
+```
+
+**Note:** if you don't have this information you cannot use the AI to generate images or store the images. However, you can use the Form to create your card and Download it.
+
+### Run solution
 
 First, run the development server:
 
@@ -15,25 +66,6 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 ## Roadmap
 
@@ -50,8 +82,19 @@ Epic: MVP
 - [ ] CI/CD
 - [ ] Backup images: upload images to blob after generation
 - [ ] Add expansion icon
+- [ ] Tooltip to explain form (mana cost and text)
 
 Epic: Edit cards
 
-- [ ] Edit data form
+- [x] Edit data form
 - [ ] Store metadata instead of the rendered image
+
+## Author
+
+### Sergio Gallardo Sales
+
+Follow me on [Twitter](https://x.com/ikeinyyo), [Github](https://github.com/ikeinyyo), and [LinkedIn](https://www.linkedin.com/in/sergiogallardosales/).
+
+## Reference
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).

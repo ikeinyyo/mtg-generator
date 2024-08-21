@@ -157,7 +157,7 @@ const CardGenerator = ({ onCardSaved }: Props) => {
           disabled={isDoActions || isLoading || !cardData}
         >
           <FaRedo className="sm:mr-2" />
-          <span className="hidden sm:inline">Regenerate</span>
+          <span className="hidden sm:inline">Re-generate</span>
         </button>
       </div>
       <CreationBar
