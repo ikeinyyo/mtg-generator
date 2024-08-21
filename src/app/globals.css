@@ -61,3 +61,10 @@ body {
   font-weight: normal;
   font-style: normal;
 }
+
+hr {
+  margin: 5px 0;
+  border: none;
+  height: 1px; 
+  background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(50, 50, 50, 1) 50%, rgba(0, 0, 0, 0) 100%);
+}

@@ -5,15 +5,16 @@ import download from "downloadjs";
 import { Card } from "./card/Card";
 import CreationBar from "./creationBar/CreationBar";
 import { FaDownload, FaSave, FaPaintBrush, FaRedo } from "react-icons/fa";
-import useCardData, { CardData } from "./useCardData";
+import useCardData, { CardData, defaultCardData } from "./useCardData";
 import useSaveCard from "../cardList/useSaveCard";
+import CardForm from "./cardForm/CardForm";
 
 type Props = {
   onCardSaved: (cardUrl: string) => void;
 };
 
 const CardGenerator = ({ onCardSaved }: Props) => {
-  const [cardData, setCardData] = useState<CardData | null>(null);
+  const [cardData, setCardData] = useState<CardData>(defaultCardData);
   const [isLoading, setLoading] = useState<boolean>(false);
   const [isDoActions, setDoActions] = useState<boolean>(false);
   const [isSavedCard, setSavedCard] = useState<boolean>(false);
@@ -97,43 +98,66 @@ const CardGenerator = ({ onCardSaved }: Props) => {
       .finally(() => setDoActions(false));
   };
 
+  const handleFormChange = (updatedData: CardData) => {
+    setCardData(updatedData);
+    setSavedCard(false);
+  };
+
   return (
     <>
-      <div ref={cardRef}>
-        <Card isLoading={isLoading} cardData={cardData} />
+      <div
+        className="flex flex-row justify-center items-start space-x-8 w-full p-4"
+        style={{ background: "rgb(25, 25, 25)" }}
+      >
+        <div className="w-3/5">
+          <CardForm
+            isLoading={isLoading || !cardData}
+            cardData={cardData}
+            onFormChange={handleFormChange}
+          />
+        </div>
+        <div className="pt-16">
+          <div ref={cardRef}>
+            <Card isLoading={isLoading} cardData={cardData} />
+          </div>
+        </div>
       </div>
       <div className="flex justify-center mt-4 space-x-4">
         <button
           title="Download Card"
-          className="flex items-center justify-center bg-orange-600 hover:bg-orange-700 text-white w-12 h-12 rounded-lg focus:outline-none disabled:bg-orange-900 disabled:cursor-not-allowed"
+          className="flex items-center justify-center bg-orange-600 hover:bg-orange-700 text-white w-12 h-12 sm:w-32 rounded-lg focus:outline-none disabled:bg-orange-900 disabled:cursor-not-allowed"
           onClick={handleCreateImage}
           disabled={isDoActions || isLoading || !cardData}
         >
-          <FaDownload />
+          <FaDownload className="sm:mr-2" />
+          <span className="hidden sm:inline">Download</span>
         </button>
         <button
           title="Save Card"
-          className="flex items-center justify-center bg-white hover:bg-gray-300 text-black w-12 h-12 rounded-lg focus:outline-none disabled:bg-gray-400 disabled:cursor-not-allowed"
+          className="flex items-center justify-center bg-white hover:bg-gray-300 text-black w-12 h-12 sm:w-32 rounded-lg focus:outline-none disabled:bg-gray-400 disabled:cursor-not-allowed"
           onClick={saveCard}
           disabled={isDoActions || isLoading || !cardData || isSavedCard}
         >
-          <FaSave />
+          <FaSave className="sm:mr-2" />
+          <span className="hidden sm:inline">Save</span>
         </button>
         <button
           title="Regenerate Illustration"
-          className="flex items-center justify-center bg-white hover:bg-gray-300 text-black w-12 h-12 rounded-lg focus:outline-none disabled:bg-gray-400 disabled:cursor-not-allowed"
+          className="flex items-center justify-center bg-white hover:bg-gray-300 text-black w-12 h-12 sm:w-32 rounded-lg focus:outline-none disabled:bg-gray-400 disabled:cursor-not-allowed"
           onClick={regenerateImage}
           disabled={isDoActions || isLoading || !cardData}
         >
-          <FaPaintBrush />
+          <FaPaintBrush className="sm:mr-2" />
+          <span className="hidden sm:inline">Paint again</span>
         </button>
         <button
           title="Regenerate Card"
-          className="flex items-center justify-center bg-white hover:bg-gray-300 text-black w-12 h-12 rounded-lg focus:outline-none disabled:bg-gray-400 disabled:cursor-not-allowed"
+          className="flex items-center justify-center bg-white hover:bg-gray-300 text-black w-12 h-12 sm:w-32 rounded-lg focus:outline-none disabled:bg-gray-400 disabled:cursor-not-allowed"
           onClick={regenerateAll}
           disabled={isDoActions || isLoading || !cardData}
         >
-          <FaRedo />
+          <FaRedo className="sm:mr-2" />
+          <span className="hidden sm:inline">Regenerate</span>
         </button>
       </div>
       <CreationBar
