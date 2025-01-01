@@ -23,7 +23,7 @@ export const defaultCardData: CardData = {
 
 const useCardData = (
   onSuccess: (cardData: CardData) => void,
-  onError: () => void
+  onError: (error: Error) => void
 ) =>
   useMutation<CardData, Error, CardRequest>({
     mutationFn: async (cardRequest: CardRequest) => {
@@ -36,7 +36,11 @@ const useCardData = (
       });
 
       if (!response.ok) {
-        throw new Error("Failed to create card");
+        const errorResponse = await response.json();
+        const errorMessage =
+          errorResponse?.error?.message ||
+          "Failed to create card (unknown error)";
+        throw new Error(errorMessage);
       }
 
       return response.json();
