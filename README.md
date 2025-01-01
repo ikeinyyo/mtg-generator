@@ -69,12 +69,12 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Roadmap
 
-Epic: MVP
+### Epic: MVP
 
 - [x] Save Card to Storage
 - [x] Show all cards in the Storage
 - [x] Regenerate image
-- [ ] Show error toast
+- [x] Show error toast
 - [ ] Image options: download, delete
 - [ ] Virtualize list
 - [ ] Users by Google (NextAuth)
@@ -84,7 +84,7 @@ Epic: MVP
 - [ ] Add expansion icon
 - [ ] Tooltip to explain form (mana cost and text)
 
-Epic: Edit cards
+### Epic: Edit cards
 
 - [x] Edit data form
 - [ ] Store metadata instead of the rendered image

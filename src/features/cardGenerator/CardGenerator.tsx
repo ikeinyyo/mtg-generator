@@ -2,6 +2,7 @@
 import React, { useRef, useState } from "react";
 import { toPng } from "html-to-image";
 import download from "downloadjs";
+import { ToastContainer, toast } from "react-toastify";
 import { Card } from "./card/Card";
 import CreationBar from "./creationBar/CreationBar";
 import { FaDownload, FaSave, FaPaintBrush, FaRedo } from "react-icons/fa";
@@ -45,9 +46,10 @@ const CardGenerator = ({ onCardSaved }: Props) => {
     setLoading(false);
   };
 
-  const { mutate: createImage } = useCardData(onCreateImage, () =>
-    setLoading(false)
-  );
+  const { mutate: createImage } = useCardData(onCreateImage, (error: Error) => {
+    setLoading(false);
+    toast.error(error.message);
+  });
 
   const { mutate: uploadCard } = useSaveCard(onCardSaved, () =>
     setLoading(false)
@@ -165,6 +167,7 @@ const CardGenerator = ({ onCardSaved }: Props) => {
         isLoading={isLoading || isDoActions}
         setPreviousPrompt={setPreviousPrompt}
       />
+      <ToastContainer />
     </>
   );
 };
